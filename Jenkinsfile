@@ -1,5 +1,5 @@
 node{
- stage(SCM Checkout){
+ stage('SCM Checkout'){
  git 'https://github.com/maheshdte/ValaxyTech-hello-world'
  }
  stage('Compile-package'){
