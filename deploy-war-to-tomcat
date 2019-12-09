@@ -13,9 +13,4 @@ sshagent(['tomcat-dev']) {
     sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@34.201.210.251:/opt/tomcat/webapps/'
 }
 
-
-
- }
- 
- 
 }
