@@ -7,10 +7,8 @@ node{
   sh "${mvnHome}/bin/mvn package"
  }
  
-
-
 sshagent(['tomcat-dev']) {
-    sh 'scp -o StrictHostKeyChecking=no target/*.war tomcat@34.201.210.251:/opt/tomcat/webapps/'
+    sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@34.201.210.251:/opt/tomcat/webapps/'
 }
 
 }
