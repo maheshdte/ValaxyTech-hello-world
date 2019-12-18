@@ -1,5 +1,9 @@
 pipeline{
   agent any
+  environment{
+  PATH="/home/ubuntu/opt/apache-maven-3.6.3/bin:$PATH
+  }
+  
   stages{
     stage("Git Checkout"){
       steps{
@@ -7,6 +11,12 @@ pipeline{
         }
         
       }
+     stage("Maven Build"){
+       steps{
+         sh "mvn clean package"
+       }
+     
+     }
         
   }
         
