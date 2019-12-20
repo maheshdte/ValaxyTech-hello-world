@@ -19,7 +19,8 @@ pipeline{
      
      }
      stage("deploy-dev"){
-       sshagent(['tomcat-dev']) {
+       steps{
+         sshagent(['tomcat-dev']) {
    
          sh """
          
@@ -30,6 +31,7 @@ pipeline{
          
          """
 }
+       }
      }
         
   }
