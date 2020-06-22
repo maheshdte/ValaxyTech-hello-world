@@ -17,8 +17,7 @@ pipeline{
          sh "mvn clean package"
          sh "mv webapp/target/webapp.war webapp/target/myweb.war"
        }
-     
-     }
+          }
      stage("deploy-dev"){
        steps{
          sshagent(['tomcat-dev']) {
