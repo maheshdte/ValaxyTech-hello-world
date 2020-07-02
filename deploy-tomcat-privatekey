@@ -1,0 +1,28 @@
+node{
+    stage('SCM Checkout'){
+        git 'https://github.com/maheshdte/ValaxyTech-hello-world'
+    }
+    stage('Compile-Package'){
+        //below in type maven is the name provided in the global tool configuration in manage Jenkins
+        //Get Maven Home Path from pipeline syntax
+        def mvnHome = tool name: 'Maven', type: 'maven'
+        sh "${mvnHome}/bin/mvn package"
+    }
+
+    stage('Deploy to Tomcat'){
+      
+      sshagent(['cloud_user']) {
+    
+    sh 'scp -o StrictHostKeyChecking=no webapp/target/webapp.war cloud_user@13.232.23.2:/tomcat9/webapps/'
+    
+}
+   }
+    stage('SonarQube Analysis'){
+        //below in type maven is the name provided in the global tool configuration in manage Jenkins
+    def mvnHome = tool name: 'Maven', type: 'maven'
+    withSonarQubeEnv('SonarQubeToken'){//sonar is the name which we have provided
+    sh "${mvnHome}/bin/mvn sonar:sonar"
+   }
+    }
+
+    
