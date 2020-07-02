@@ -17,13 +17,6 @@ node{
     
 }
    }
-    stage('SonarQube Analysis'){
-        //below in type maven is the name provided in the global tool configuration in manage Jenkins
-    def mvnHome = tool name: 'Maven', type: 'maven'
-    withSonarQubeEnv('SonarQubeToken'){//sonar is the name which we have provided
-    sh "${mvnHome}/bin/mvn sonar:sonar"
-   }
-    }
-
+    
 }
     
