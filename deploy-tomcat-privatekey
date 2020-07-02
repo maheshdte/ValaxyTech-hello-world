@@ -13,7 +13,7 @@ node{
       
       sshagent(['cloud_user']) {
     
-    sh 'scp -o StrictHostKeyChecking=no webapp/target/webapp.war cloud_user@13.232.23.2:/home/cloud_user/tomcat9/webapps/'
+    sh 'scp -o PubkeyAuthentication=no StrictHostKeyChecking=no webapp/target/webapp.war cloud_user@13.232.23.2:/home/cloud_user/tomcat9/webapps/'
     
 }
    }
