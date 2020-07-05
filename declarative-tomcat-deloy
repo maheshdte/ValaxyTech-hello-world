@@ -22,8 +22,9 @@ pipeline{
         }
 
         stage("deploy-dev"){
+            steps{
             sshagent(['deploy_user']) {
-                steps{
+                
                   sh """
               scp -o StrictHostKeyChecking=no webapp/target/webapp.war cloud_user@13.233.212.98:/opt/tomcat9/webapps/
               ssh cloud_user@13.233.212.98 /opt/tomcat9/bin/shutdown.sh
