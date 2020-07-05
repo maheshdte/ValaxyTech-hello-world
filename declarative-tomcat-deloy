@@ -19,7 +19,7 @@ pipeline{
         }
 
         stage("deploy-dev"){
-            sshagent(['deploy_user']) {
+            sshagent(['declarative-dev']) {
               sh 'scp -o StrictHostKeyChecking=no webapp/target/webapp.war cloud_user@13.233.212.98:/opt/tomcat9/webapps/'
         }
         }
