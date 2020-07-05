@@ -15,12 +15,20 @@ pipeline{
          }
 
          stage("Maven Build"){
-            sh "mvn clean package"
+             steps{
+                sh "mvn clean package"
+             }
+            
         }
 
         stage("deploy-dev"){
-            sshagent(['declarative-dev']) {
-              sh 'scp -o StrictHostKeyChecking=no webapp/target/webapp.war cloud_user@13.233.212.98:/opt/tomcat9/webapps/'
+            sshagent(['deploy_user']) {
+              sh """
+              scp -o StrictHostKeyChecking=no webapp/target/webapp.war cloud_user@13.233.212.98:/opt/tomcat9/webapps/
+              ssh cloud_user@13.233.212.98 /opt/tomcat9/bin/shutdown.sh
+              ssh cloud_user@13.233.212.98 /opt/tomcat9/bin/startup.sh
+              """
+
         }
         }
     }
