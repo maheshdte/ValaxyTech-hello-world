@@ -3,15 +3,25 @@ node{
  git 'https://github.com/maheshdte/ValaxyTech-hello-world'
  }
  stage('Compile-package'){
- def mvnHome = tool name: 'maven', type: 'maven'
+ def mvnHome = tool name: 'Maven3', type: 'maven'
   sh "${mvnHome}/bin/mvn package"
  }
  stage('deploy-to-tomcat'){
    sshagent(['deploy_user']) {
-    sh 'scp -o StrictHostKeyChecking=no webapp/target/webapp.war cloud_user@13.126.145.157:/opt/tomcat9/webapps/'
+    sh 'pwd'
+    sh 'scp -o StrictHostKeyChecking=no webapp/target/webapp.war root@3.87.55.233:/opt/tomcat9/webapps/'
     
    }
   }
+  
+  stage('SonarQube Analysis'){
+        
+        
+    def mvnHome = tool name: 'maven', type: 'maven'
+    withSonarQubeEnv('sonar'){//sonar is the name which we have provided
+    sh "${mvnHome}/bin/mvn sonar:sonar"
+   }
+    }
 }
 
 
