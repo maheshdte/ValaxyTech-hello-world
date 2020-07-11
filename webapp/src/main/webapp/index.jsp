@@ -1,5 +1,3 @@
-<h1> Hello, welcome to my world!/n
-Deploying on Container using Ansible
-Verify automated build in Jenkins
+<h1> Hello, this application is deploy from Jenkins, Ansible, Dockerhub and Ansible
 </h1>
 
